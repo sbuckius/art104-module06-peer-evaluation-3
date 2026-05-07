@@ -3,807 +3,453 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Peer Review #3 — Draft Paper</title>
+<title>Peer Feedback — Speculative Artwork Project & Paper</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" onload="this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap"></noscript>
 <style>
 :root {
-  --ink:        #1C1917;
-  --ink-2:      #44403C;
-  --ink-3:      #78716C;
-  --ink-4:      #A8A29E;
-  --paper:      #FAFAF7;
-  --paper-2:    #F5F3EE;
-  --paper-3:    #EDE9E2;
-  --rule:       #E2DDD6;
-  --accent:     #0F766E;
-  --accent-bg:  #CCFBF1;
-  --suggest:    #7C3AED;
-  --suggest-bg: #F5F3FF;
-  --suggest-rule:#DDD6FE;
-  --warn:       #92400E;
-  --warn-bg:    #FEF9EC;
-  --warn-rule:  #FDE68A;
-  --radius:     10px;
-  --radius-sm:  6px;
-  --shadow:     0 1px 3px rgba(28,25,23,.06), 0 4px 12px rgba(28,25,23,.04);
+  --ink:       #0E0D0B;
+  --ink-2:     #3A3733;
+  --ink-3:     #7A7570;
+  --ink-4:     #B0AAA3;
+  --paper:     #F6F3EE;
+  --paper-2:   #EFEBE3;
+  --paper-3:   #E5DFD4;
+  --rule:      #D8D0C4;
+  --accent:    #C0392B;
+  --accent-2:  #8B2218;
+  --num-bg:    #0E0D0B;
+  --radius:    2px;
+  --shadow:    0 2px 6px rgba(14,13,11,.07), 0 8px 24px rgba(14,13,11,.05);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; scroll-behavior: smooth; }
+
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: 'DM Sans', system-ui, sans-serif;
-  font-weight: 400;
-  line-height: 1.6;
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-weight: 300;
+  line-height: 1.65;
   min-height: 100vh;
 }
+
+/* grain overlay */
 body::before {
   content: '';
-  position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 0;
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  opacity: 1;
 }
+
+/* header */
 .site-header {
-  background: var(--ink); color: #FAFAF7;
-  padding: 2.5rem 2rem 2rem;
+  background: var(--num-bg);
+  color: var(--paper);
+  padding: 3rem 2rem 2.5rem;
   position: relative; overflow: hidden;
 }
 .site-header::after {
-  content: 'PEER\AREVIEW'; white-space: pre;
-  position: absolute; right: -1rem; top: 50%; transform: translateY(-50%);
-  font-family: 'Lora', Georgia, serif; font-size: 7rem; font-weight: 600;
-  line-height: .85; color: rgba(255,255,255,.04); pointer-events: none; letter-spacing: -.02em;
+  content: 'FEEDBACK';
+  position: absolute; right: -0.5rem; bottom: -1.2rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 8rem; font-weight: 700; letter-spacing: -.04em;
+  color: rgba(246,243,238,.04); pointer-events: none; line-height: 1;
 }
-.header-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
-.header-eyebrow { font-size: .7rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-4); margin-bottom: .5rem; }
-.header-badge { display: inline-block; background: var(--accent); color: #fff; font-size: .68rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; border-radius: 20px; padding: 2px 10px; margin-left: .5rem; vertical-align: middle; }
-.header-title { font-family: 'Lora', Georgia, serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 600; letter-spacing: -.02em; line-height: 1.15; margin-bottom: .6rem; }
-.header-sub { font-size: .9rem; color: var(--ink-4); max-width: 520px; }
-.main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 5rem; position: relative; z-index: 1; }
+.header-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+.header-eyebrow {
+  font-size: .65rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .75rem;
+}
+.header-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700; letter-spacing: -.02em; line-height: 1.1;
+  margin-bottom: .75rem;
+}
+.header-title em { font-style: italic; color: var(--ink-4); }
+.header-sub {
+  font-size: .78rem; color: var(--ink-4); max-width: 480px; line-height: 1.7;
+}
 
-/* notices */
-.notice { display: flex; gap: .75rem; align-items: flex-start; background: var(--warn-bg); border: 1px solid var(--warn-rule); border-left: 3px solid #F59E0B; border-radius: var(--radius-sm); padding: .875rem 1rem; margin-bottom: 1.75rem; }
-.notice-icon { flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; color: #B45309; }
-.notice p { font-size: .82rem; color: var(--warn); line-height: 1.55; }
-.notice strong { font-weight: 500; }
+/* main */
+.main { max-width: 700px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; position: relative; z-index: 1; }
+
+/* notice */
+.notice {
+  display: flex; gap: .75rem; align-items: flex-start;
+  background: var(--paper-2); border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  padding: .875rem 1rem; margin-bottom: 2rem;
+  font-size: .75rem; color: var(--ink-3);
+}
+.notice svg { flex-shrink: 0; margin-top: 2px; }
 
 /* progress */
-.autosave-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
-.progress-wrap { flex: 1; margin-right: 1rem; }
-.progress-label { font-size: .75rem; color: var(--ink-3); margin-bottom: .3rem; letter-spacing: .03em; }
-.progress-track { height: 3px; background: var(--paper-3); border-radius: 2px; overflow: hidden; }
-.progress-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .5s cubic-bezier(.4,0,.2,1); }
-.save-status { font-size: .78rem; color: var(--ink-4); white-space: nowrap; display: flex; align-items: center; gap: .4rem; }
-.save-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0; transition: opacity .3s; }
+.autosave-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.progress-wrap { flex: 1; margin-right: 1.25rem; }
+.progress-label { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-4); margin-bottom: .35rem; }
+.progress-track { height: 2px; background: var(--paper-3); }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width .5s cubic-bezier(.4,0,.2,1); }
+.save-status { font-size: .7rem; color: var(--ink-4); white-space: nowrap; display: flex; align-items: center; gap: .4rem; }
+.save-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0; transition: opacity .3s; }
 .save-dot.on { opacity: 1; }
 
-/* cards */
-.card { background: #fff; border: 1px solid var(--rule); border-radius: var(--radius); margin-bottom: 1.25rem; box-shadow: var(--shadow); overflow: hidden; animation: fadeUp .4s ease both; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-.card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.15s}.card:nth-child(4){animation-delay:.2s}.card:nth-child(5){animation-delay:.25s}.card:nth-child(6){animation-delay:.3s}.card:nth-child(7){animation-delay:.35s}.card:nth-child(8){animation-delay:.4s}.card:nth-child(9){animation-delay:.45s}.card:nth-child(10){animation-delay:.5s}
-.card-head { padding: .875rem 1.25rem; background: var(--paper-2); border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: .625rem; }
-.card-title { font-family: 'Lora', Georgia, serif; font-size: 1rem; font-weight: 500; color: var(--ink); letter-spacing: -.01em; flex: 1; }
-.part-tag { font-size: .68rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; background: var(--paper-3); color: var(--ink-3); border: 1px solid var(--rule); border-radius: 20px; padding: 2px 9px; }
-.card-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 1.25rem; }
-
-/* fields */
-.field-label { display: block; font-size: .82rem; font-weight: 500; color: var(--ink-2); margin-bottom: .2rem; letter-spacing: .01em; }
-.field-hint { font-size: .78rem; color: var(--ink-4); margin-bottom: .5rem; line-height: 1.5; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-input[type="text"], textarea {
-  width: 100%; font-family: 'DM Sans', system-ui, sans-serif; font-size: .88rem; color: var(--ink);
-  background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius-sm);
-  padding: .6rem .8rem; line-height: 1.55; transition: border-color .15s, background .15s; resize: none;
+/* reviewer strip */
+.reviewer-strip {
+  background: var(--num-bg); color: var(--paper);
+  padding: 1rem 1.25rem; margin-bottom: 2rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
 }
-input[type="text"]:focus, textarea:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgba(15,118,110,.08); }
-textarea { min-height: 78px; overflow: hidden; }
-
-/* pills */
-.radio-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .5rem; }
-.radio-pill {
-  display: flex; align-items: center; gap: .4rem; font-size: .82rem; color: var(--ink-2);
-  background: var(--paper-2); border: 1px solid var(--rule); border-radius: 20px;
-  padding: .3rem .85rem; cursor: pointer;
-  transition: border-color .15s, background .15s, color .15s; user-select: none;
+.strip-field label { display: block; font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-4); margin-bottom: .3rem; }
+.strip-field input {
+  width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(246,243,238,.18);
+  color: var(--paper); font-family: 'DM Mono', monospace; font-size: .85rem; font-weight: 300;
+  padding: .25rem 0; outline: none;
 }
-.radio-pill:has(input:checked) { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); font-weight: 500; }
-.radio-pill input { width: 0; height: 0; opacity: 0; position: absolute; }
+.strip-field input:focus { border-bottom-color: var(--accent); }
+.strip-field input::placeholder { color: rgba(246,243,238,.25); }
+.strip-wide { grid-column: 1/-1; }
 
-/* divider between questions inside a card */
-.q-block { display: flex; flex-direction: column; gap: .5rem; padding-top: 1rem; border-top: 1px solid var(--paper-3); }
-.q-block:first-child { padding-top: 0; border-top: none; }
+/* question blocks */
+.q-block {
+  margin-bottom: 1.75rem;
+  animation: fadeUp .5s ease both;
+}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.q-block:nth-child(1){animation-delay:.06s}
+.q-block:nth-child(2){animation-delay:.12s}
+.q-block:nth-child(3){animation-delay:.18s}
+.q-block:nth-child(4){animation-delay:.24s}
+.q-block:nth-child(5){animation-delay:.30s}
+.q-block:nth-child(6){animation-delay:.36s}
+.q-block:nth-child(7){animation-delay:.42s}
 
-/* stars */
-.ratings-table { display: flex; flex-direction: column; }
-.rating-row { display: flex; align-items: center; gap: 1rem; padding: .65rem 0; border-bottom: 1px solid var(--paper-3); }
-.rating-row:last-child { border-bottom: none; }
-.rating-label { font-size: .85rem; color: var(--ink-2); flex: 1; }
-.stars { display: flex; gap: .2rem; }
-.star { background: none; border: none; cursor: pointer; font-size: 1.25rem; color: var(--paper-3); padding: .1rem; transition: color .1s, transform .1s; line-height: 1; }
-.star:hover, .star.active { color: #D97706; }
-.star:hover { transform: scale(1.15); }
+.q-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: .5rem; }
+.q-number {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; flex-shrink: 0;
+  background: var(--num-bg); color: var(--paper);
+  font-size: .65rem; font-weight: 500; letter-spacing: .04em;
+}
+.q-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem; font-weight: 400; letter-spacing: -.01em;
+  color: var(--ink);
+}
+.q-hint {
+  font-size: .75rem; color: var(--ink-3); line-height: 1.65;
+  margin-bottom: .6rem; padding-left: 2.25rem;
+}
+.q-hints { padding-left: 2.25rem; margin-bottom: .6rem; }
+.q-hints li {
+  font-size: .73rem; color: var(--ink-3); line-height: 1.6;
+  list-style: none; padding-left: .9rem; position: relative;
+}
+.q-hints li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+.q-hints li strong { color: var(--ink-2); font-weight: 500; }
 
-/* scale */
-.scale-row { display: flex; gap: .35rem; flex-wrap: wrap; margin-bottom: .4rem; }
-.scale-btn { width: 36px; height: 36px; border: 1px solid var(--rule); border-radius: var(--radius-sm); background: var(--paper-2); color: var(--ink-3); font-size: .85rem; font-weight: 500; cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif; transition: border-color .15s, background .15s, color .15s; display: flex; align-items: center; justify-content: center; }
-.scale-btn.active { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
-.scale-labels { display: flex; justify-content: space-between; font-size: .72rem; color: var(--ink-4); padding: 0 2px; }
+textarea {
+  width: 100%; font-family: 'DM Mono', monospace; font-size: .82rem;
+  font-weight: 300; color: var(--ink); line-height: 1.7;
+  background: #fff; border: 1px solid var(--rule);
+  padding: .75rem .9rem; resize: none; outline: none;
+  min-height: 100px; transition: border-color .15s, box-shadow .15s;
+  border-radius: var(--radius);
+  margin-left: 2.25rem; width: calc(100% - 2.25rem);
+}
+textarea:focus { border-color: var(--ink-3); box-shadow: 0 0 0 3px rgba(14,13,11,.06); }
+textarea::placeholder { color: var(--ink-4); }
+
+/* divider */
+.divider { height: 1px; background: var(--rule); margin: 2.5rem 0; position: relative; }
+.divider::after {
+  content: attr(data-label);
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  background: var(--paper); padding-right: .75rem;
+  font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-4);
+}
 
 /* actions */
-.actions { display: flex; gap: .75rem; align-items: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); flex-wrap: wrap; }
-.btn { font-family: 'DM Sans', system-ui, sans-serif; font-size: .88rem; font-weight: 500; border-radius: var(--radius-sm); padding: .65rem 1.5rem; cursor: pointer; border: none; transition: background .15s, transform .1s, box-shadow .15s; letter-spacing: .01em; }
+.actions { display: flex; gap: .75rem; align-items: center; margin-top: 2.5rem; flex-wrap: wrap; }
+.btn {
+  font-family: 'DM Mono', monospace; font-size: .78rem; font-weight: 500;
+  letter-spacing: .06em; text-transform: uppercase;
+  border: none; cursor: pointer; padding: .7rem 1.6rem;
+  transition: background .15s, transform .1s, box-shadow .15s;
+  border-radius: var(--radius);
+}
 .btn:active { transform: scale(.98); }
-.btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-.btn-export { background: var(--accent); color: #fff; display: flex; align-items: center; gap: .5rem; }
-.btn-export:hover { background: #0a6560; box-shadow: 0 2px 8px rgba(15,118,110,.3); }
-.btn-ghost { background: transparent; color: var(--ink-3); border: 1px solid var(--rule); }
-.btn-ghost:hover { border-color: var(--ink-3); color: var(--ink-2); }
+.btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.btn-export {
+  background: var(--accent); color: #fff;
+  display: flex; align-items: center; gap: .5rem;
+}
+.btn-export:hover { background: var(--accent-2); box-shadow: 0 2px 10px rgba(192,57,43,.3); }
+.btn-ghost {
+  background: transparent; color: var(--ink-3);
+  border: 1px solid var(--rule);
+}
+.btn-ghost:hover { border-color: var(--ink-3); color: var(--ink); }
+#print-hint { font-size: .75rem; color: var(--ink-3); display: none; }
+#print-hint strong { color: var(--ink); }
 
 /* ── PRINT ── */
 @media print {
   @page { size: letter; margin: 18mm 16mm; }
-  body::before, .site-header::after, .autosave-bar, .notice, .actions, .btn { display: none !important; }
-  body { background: #fff; color: #000; font-size: 9.5pt; line-height: 1.5; }
-  .site-header { background: #1C1917 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; color: #fff !important; padding: 14pt 16pt 12pt; margin-bottom: 14pt; }
-  .header-eyebrow { color: #A8A29E !important; font-size: 7pt; }
-  .header-title { font-size: 18pt; color: #fff !important; }
-  .header-sub { color: #A8A29E !important; font-size: 8.5pt; }
-  .header-badge { background: #0F766E !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body::before, .site-header::after, .autosave-bar, .notice, .actions { display: none !important; }
+  body { background: #fff; color: #000; font-size: 9.5pt; line-height: 1.55; }
+  .site-header { background: #0E0D0B !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; color: #F6F3EE !important; padding: 12pt 16pt 10pt; margin-bottom: 12pt; }
+  .header-eyebrow { color: #C0392B !important; font-size: 7pt; }
+  .header-title { font-size: 20pt; color: #F6F3EE !important; }
+  .header-sub { color: #B0AAA3 !important; font-size: 8pt; }
+  .reviewer-strip { background: #0E0D0B !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 8pt 10pt; margin-bottom: 10pt; }
+  .strip-field label { color: #7A7570 !important; font-size: 6.5pt; }
+  .strip-field input { color: #F6F3EE !important; border-bottom-color: #3A3733 !important; font-size: 9pt; }
   .main { padding: 0; max-width: 100%; }
-  .card { border: 1px solid #D6D3D1; border-radius: 6pt; margin-bottom: 10pt; box-shadow: none; animation: none; break-inside: auto; }
-  .card-head { background: #F5F3EE !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 6pt 10pt; border-bottom: 1px solid #D6D3D1; break-after: avoid; }
-  .card-title { font-size: 10pt; font-weight: 600; }
-  .part-tag { font-size: 6.5pt; }
-  .card-body { padding: 8pt 10pt; gap: 8pt; }
-  .q-block { padding-top: 6pt; }
-  .field-label { font-size: 8pt; font-weight: 600; margin-bottom: 1pt; }
-  .field-hint { font-size: 7.5pt; color: #78716C; margin-bottom: 3pt; }
-  input[type="text"], textarea { display: none !important; }
-  .print-proxy { border: 1px solid #D6D3D1; border-radius: 4pt; padding: 4pt 6pt; font-size: 8.5pt; font-family: 'DM Sans', system-ui, sans-serif; background: #FAFAF7 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; white-space: pre-wrap; word-wrap: break-word; width: 100%; display: block; min-height: 14pt; line-height: 1.5; color: #1C1917; }
-  .print-proxy--inline { min-height: 12pt; }
-  .two-col { grid-template-columns: 1fr; gap: 6pt; }
-  .radio-row { gap: 4pt; margin-bottom: 4pt; break-inside: avoid; }
-  .radio-pill { font-size: 7.5pt; padding: 2pt 7pt; border: 1px solid #D6D3D1; background: #F5F3EE !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .radio-pill:has(input:checked) { background: #CCFBF1 !important; border-color: #0F766E !important; color: #0F766E !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .star { font-size: 11pt; }
-  .star.active { color: #D97706 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .scale-btn { width: 26pt; height: 26pt; font-size: 8pt; }
-  .scale-btn.active { background: #CCFBF1 !important; border-color: #0F766E !important; color: #0F766E !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .rating-row { break-inside: avoid; }
+  .q-block { margin-bottom: 12pt; break-inside: avoid; }
+  .q-number { background: #0E0D0B !important; color: #F6F3EE !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; width: 18pt; height: 18pt; font-size: 7pt; }
+  .q-label { font-size: 11pt; }
+  .q-hint, .q-hints li { font-size: 7.5pt; color: #7A7570; }
+  .q-hints li::before { color: #C0392B !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  textarea { display: none !important; }
+  .print-proxy {
+    border: 1px solid #D8D0C4; padding: 5pt 7pt; font-size: 8.5pt;
+    font-family: 'DM Mono', monospace; background: #FAFAF7 !important;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    white-space: pre-wrap; word-wrap: break-word; display: block;
+    min-height: 40pt; line-height: 1.5; color: #0E0D0B;
+    margin-left: 24pt; width: calc(100% - 24pt);
+  }
+  .divider { margin: 10pt 0; }
 }
 </style>
 </head>
 <body>
+
 <header class="site-header">
   <div class="header-inner">
-    <p class="header-eyebrow">Digital Media Arts &nbsp;&middot;&nbsp; Draft Paper <span class="header-badge">Review #3</span></p>
-    <h1 class="header-title">Peer Review</h1>
-    <p class="header-sub">A review of the draft paper — writing quality, argument, artwork analysis, research, and the speculative artwork concept. Complete all sections, then export your PDF to submit.</p>
+    <p class="header-eyebrow">Digital Media Arts &nbsp;·&nbsp; Speculative Artwork Project &amp; Paper</p>
+    <h1 class="header-title">Peer <em>Feedback</em></h1>
+    <p class="header-sub">Open-ended feedback on a peer's speculative artwork project and accompanying paper. Answer each question thoughtfully — specific observations are more useful than general summary. Export to PDF when done.</p>
   </div>
 </header>
 
 <main class="main">
+
   <div class="notice">
-    <svg class="notice-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 5v3.5M8 10.5v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-    <p><strong>Heads up about saving:</strong> Responses are saved to <strong>this browser only</strong>. Use the <strong>Export PDF</strong> button before closing to keep a permanent copy.</p>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="6" stroke="#C0392B" stroke-width="1.2"/><path d="M7 4.5v3M7 9v.5" stroke="#C0392B" stroke-width="1.2" stroke-linecap="round"/></svg>
+    <span>Responses are saved to this browser only. Use <strong>Export PDF</strong> before closing to keep a copy.</span>
   </div>
 
   <div class="autosave-bar">
     <div class="progress-wrap">
-      <div class="progress-label" id="progress-label">0% complete</div>
+      <div class="progress-label" id="progress-label">0 of 9 answered</div>
       <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
     </div>
     <div class="save-status"><div class="save-dot" id="save-dot"></div><span id="save-label"></span></div>
   </div>
 
-  <!-- REVIEWER INFO -->
-  <div class="card">
-    <div class="card-head"><h2 class="card-title">Reviewer info</h2></div>
-    <div class="card-body">
-      <div class="two-col">
-        <div><label class="field-label" for="reviewer-name">Your name</label><input type="text" id="reviewer-name" placeholder="First Last" autocomplete="off"></div>
-        <div><label class="field-label" for="author-name">Author or group being reviewed</label><input type="text" id="author-name" placeholder="Name or group number" autocomplete="off"></div>
-      </div>
-      <div><label class="field-label" for="paper-title">Paper title</label><input type="text" id="paper-title" placeholder="Full title from the project" autocomplete="off"></div>
+  <div class="reviewer-strip">
+    <div class="strip-field">
+      <label for="reviewer-name">Your name</label>
+      <input type="text" id="reviewer-name" placeholder="First Last" autocomplete="off">
+    </div>
+    <div class="strip-field">
+      <label for="author-name">Author / group reviewed</label>
+      <input type="text" id="author-name" placeholder="Name or group number" autocomplete="off">
+    </div>
+    <div class="strip-field strip-wide">
+      <label for="paper-title">Paper title</label>
+      <input type="text" id="paper-title" placeholder="Full title from the project" autocomplete="off">
     </div>
   </div>
 
-  <!-- INTRODUCTION & THESIS -->
-  <div class="card">
-    <div class="card-head"><h2 class="card-title">Introduction &amp; thesis</h2><span class="part-tag">Part 2</span></div>
-    <div class="card-body">
-      <div class="q-block">
-        <label class="field-label">The opening hook is engaging</label>
-        <p class="field-hint">Does the paper open with something that draws the reader in — a compelling question, image, quote, or claim? Or does it start too broadly or generically?</p>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="hook" value="strong">Strong hook</label>
-          <label class="radio-pill"><input type="radio" name="hook" value="present">Present but weak</label>
-          <label class="radio-pill"><input type="radio" name="hook" value="generic">Too generic</label>
-          <label class="radio-pill"><input type="radio" name="hook" value="missing">No hook</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Background context is established</label>
-        <p class="field-hint">Does the introduction give the reader enough context to understand the project's focus — the relevant field, conversation, or problem being addressed?</p>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="background" value="strong">Strong and clear</label>
-          <label class="radio-pill"><input type="radio" name="background" value="some">Some context given</label>
-          <label class="radio-pill"><input type="radio" name="background" value="thin">Too thin</label>
-          <label class="radio-pill"><input type="radio" name="background" value="missing">No background</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Thesis statement clarity</label>
-        <p class="field-hint">Does the thesis clearly state what the project is about and why it matters? Is it specific enough to give direction?</p>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="thesis-clarity" value="clear">Clear and focused</label>
-          <label class="radio-pill"><input type="radio" name="thesis-clarity" value="partial">Partially there</label>
-          <label class="radio-pill"><input type="radio" name="thesis-clarity" value="vague">Too vague</label>
-          <label class="radio-pill"><input type="radio" name="thesis-clarity" value="missing">Not present</label>
-        </div>
-        <textarea id="q-thesis" placeholder="How can the thesis be made more specific or focused? What should the author do to strengthen it?"></textarea>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Does the introduction set up all three themes?</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="intro-themes" value="yes">Yes, clearly</label>
-          <label class="radio-pill"><input type="radio" name="intro-themes" value="partial">Partially</label>
-          <label class="radio-pill"><input type="radio" name="intro-themes" value="no">Not really</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Is the speculative artwork introduced in the opening?</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="intro-spec" value="yes">Yes</label>
-          <label class="radio-pill"><input type="radio" name="intro-spec" value="briefly">Briefly mentioned</label>
-          <label class="radio-pill"><input type="radio" name="intro-spec" value="no">Not mentioned</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label" for="q-intro-suggest">Suggestions for the introduction</label>
-        <p class="field-hint">What specific changes would most improve the hook, background, or thesis?</p>
-        <textarea id="q-intro-suggest" placeholder="What should the author do to strengthen the introduction?"></textarea>
-      </div>
+  <div class="divider" data-label="Feedback"></div>
+
+  <div class="q-block">
+    <div class="q-header">
+      <span class="q-number">0</span>
+      <span class="q-label">What is working well</span>
     </div>
+    <ul class="q-hints">
+      <li>What ideas, sections, or choices stand out as genuinely strong?</li>
+      <li>Point to specific moments — a particular artwork analysis, a well-articulated connection, a compelling theme.</li>
+      <li>Aim for at least two or three concrete observations.</li>
+    </ul>
+    <textarea id="q-working" placeholder="List several specific things that are working well in the project…" style="min-height:120px"></textarea>
   </div>
 
-  <!-- BODY: IDEAS & STRUCTURE -->
-  <div class="card">
-    <div class="card-head"><h2 class="card-title">Body — ideas and structure</h2><span class="part-tag">Part 3</span></div>
-    <div class="card-body">
-      <div class="q-block">
-        <label class="field-label">Each section has one clear main idea</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="section-focus" value="all">All sections</label>
-          <label class="radio-pill"><input type="radio" name="section-focus" value="most">Most sections</label>
-          <label class="radio-pill"><input type="radio" name="section-focus" value="some">Some sections</label>
-          <label class="radio-pill"><input type="radio" name="section-focus" value="few">Few sections</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">The order of sections is logical</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="section-order" value="yes">Yes, flows well</label>
-          <label class="radio-pill"><input type="radio" name="section-order" value="mostly">Mostly</label>
-          <label class="radio-pill"><input type="radio" name="section-order" value="no">Could be reordered</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Cohesion within each theme</label>
-        <p class="field-hint">Within each theme, do artworks, sources, and ideas point in the same direction?</p>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="theme-cohesion" value="all">All themes cohesive</label>
-          <label class="radio-pill"><input type="radio" name="theme-cohesion" value="most">Most are cohesive</label>
-          <label class="radio-pill"><input type="radio" name="theme-cohesion" value="one">One theme is scattered</label>
-          <label class="radio-pill"><input type="radio" name="theme-cohesion" value="multiple">Multiple themes scattered</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Overall focus and clarity</label>
-        <p class="field-hint">How clearly does the project communicate its central ideas?</p>
-        <div class="scale-row" id="sc-argument">
-          <button class="scale-btn" data-v="1">1</button>
-          <button class="scale-btn" data-v="2">2</button>
-          <button class="scale-btn" data-v="3">3</button>
-          <button class="scale-btn" data-v="4">4</button>
-          <button class="scale-btn" data-v="5">5</button>
-        </div>
-        <div class="scale-labels"><span>Needs significant work</span><span>Clear and focused</span></div>
-      </div>
-      <div class="q-block">
-        <label class="field-label" for="q-body-suggest">Suggestions for the body</label>
-        <p class="field-hint">What specific changes would most improve the structure, focus, or cohesion of the body sections?</p>
-        <textarea id="q-body-suggest" placeholder="What should the author do to strengthen the body of the paper?"></textarea>
-      </div>
+  <div class="q-block">
+    <div class="q-header">
+      <span class="q-number">1</span>
+      <span class="q-label">Suggestions for the speculative artwork</span>
     </div>
+    <ul class="q-hints">
+      <li>Does the concept feel genuinely speculative, or does it stay too close to familiar territory?</li>
+      <li>What could make it more ambitious, strange, or unexpected?</li>
+      <li>Are there elements that feel underdeveloped or vague?</li>
+    </ul>
+    <textarea id="q-spec" placeholder="How could the speculative artwork be pushed further or made more fully realized?…"></textarea>
   </div>
 
-  <!-- ARTWORK ANALYSIS -->
-  <div class="card">
-    <div class="card-head"><h2 class="card-title">Artwork analysis</h2><span class="part-tag">Part 3 cont.</span></div>
-    <div class="card-body">
-      <div class="q-block">
-        <label class="field-label">Number of artworks planned for discussion</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="artwork-count" value="3+">3 or more</label>
-          <label class="radio-pill"><input type="radio" name="artwork-count" value="2">Exactly 2</label>
-          <label class="radio-pill"><input type="radio" name="artwork-count" value="1">Only 1</label>
-          <label class="radio-pill"><input type="radio" name="artwork-count" value="0">None</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Artworks are described with enough detail</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="artwork-detail" value="all">All artworks</label>
-          <label class="radio-pill"><input type="radio" name="artwork-detail" value="most">Most artworks</label>
-          <label class="radio-pill"><input type="radio" name="artwork-detail" value="some">Some artworks</label>
-          <label class="radio-pill"><input type="radio" name="artwork-detail" value="none">Not enough detail</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Analysis goes beyond summary</label>
-        <p class="field-hint">Is there genuine analysis and connection to the ideas in the paper, not just describing what the work is?</p>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="artwork-analysis" value="strong">Strong analysis</label>
-          <label class="radio-pill"><input type="radio" name="artwork-analysis" value="some">Some analysis</label>
-          <label class="radio-pill"><input type="radio" name="artwork-analysis" value="mostly-summary">Mostly summary</label>
-          <label class="radio-pill"><input type="radio" name="artwork-analysis" value="only-summary">Only summary</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Artworks are clearly connected to the project's ideas</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="artwork-connect" value="all">All connected</label>
-          <label class="radio-pill"><input type="radio" name="artwork-connect" value="most">Most connected</label>
-          <label class="radio-pill"><input type="radio" name="artwork-connect" value="some">Some connected</label>
-          <label class="radio-pill"><input type="radio" name="artwork-connect" value="listed">Just listed</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Each artwork has a clear link to the speculative artwork</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="artwork-spec-link" value="all">All artworks</label>
-          <label class="radio-pill"><input type="radio" name="artwork-spec-link" value="most">Most artworks</label>
-          <label class="radio-pill"><input type="radio" name="artwork-spec-link" value="some">Some artworks</label>
-          <label class="radio-pill"><input type="radio" name="artwork-spec-link" value="none">None clearly linked</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">The artwork selection is well-chosen for this project</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="artwork-selection" value="strong">Strong choices</label>
-          <label class="radio-pill"><input type="radio" name="artwork-selection" value="good">Good choices</label>
-          <label class="radio-pill"><input type="radio" name="artwork-selection" value="weak">Some weak choices</label>
-          <label class="radio-pill"><input type="radio" name="artwork-selection" value="off">Wrong direction</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label" for="q-artwork-suggest">Suggestions for artwork analysis</label>
-        <p class="field-hint">What specific changes would most improve how artworks are described, analyzed, or connected to the project's ideas?</p>
-        <textarea id="q-artwork-suggest" placeholder="What should the author do to strengthen the artwork analysis?"></textarea>
-      </div>
+  <div class="q-block">
+    <div class="q-header">
+      <span class="q-number">2</span>
+      <span class="q-label">Is the speculative artwork described and linked to the paper's themes?</span>
     </div>
+    <ul class="q-hints">
+      <li>Is the artwork described in enough detail that a reader can picture it clearly?</li>
+      <li>Does the paper explicitly connect it to the three themes, or does it feel like a separate section?</li>
+      <li>Which themes feel well-linked — and which need a stronger bridge to the artwork concept?</li>
+      <li>Does the writing treat the speculative artwork as the culmination of the paper's ideas, or more like an appendix?</li>
+    </ul>
+    <textarea id="q-spec-themes" placeholder="How well does the paper describe and connect the speculative artwork to its central themes and ideas?…"></textarea>
   </div>
 
-  <!-- RESEARCH & SOURCES -->
-  <div class="card">
-    <div class="card-head"><h2 class="card-title">Research and sources</h2><span class="part-tag">Part 3 cont.</span></div>
-    <div class="card-body">
-      <div class="q-block">
-        <label class="field-label">Source quantity requirements (3+ sources, 2+ peer-reviewed)</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="sources-req" value="met">Requirements met</label>
-          <label class="radio-pill"><input type="radio" name="sources-req" value="partial">Partially met</label>
-          <label class="radio-pill"><input type="radio" name="sources-req" value="unmet">Not yet met</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">At least 2 sources appear to be peer-reviewed</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="peer-reviewed" value="yes">Yes</label>
-          <label class="radio-pill"><input type="radio" name="peer-reviewed" value="one">Only one</label>
-          <label class="radio-pill"><input type="radio" name="peer-reviewed" value="no">None clearly peer-reviewed</label>
-          <label class="radio-pill"><input type="radio" name="peer-reviewed" value="unclear">Can't tell</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Sources are clearly connected to specific ideas (not just listed)</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="sources-use" value="all">All sources</label>
-          <label class="radio-pill"><input type="radio" name="sources-use" value="most">Most sources</label>
-          <label class="radio-pill"><input type="radio" name="sources-use" value="some">Some sources</label>
-          <label class="radio-pill"><input type="radio" name="sources-use" value="listed">Just listed</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Articles connect directly to the speculative artwork (not just body artworks)</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="sources-spec" value="all">All do</label>
-          <label class="radio-pill"><input type="radio" name="sources-spec" value="most">Most do</label>
-          <label class="radio-pill"><input type="radio" name="sources-spec" value="some">Some do</label>
-          <label class="radio-pill"><input type="radio" name="sources-spec" value="none">None clearly do</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Non-art sources are from a genuinely different discipline</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="outside-field" value="yes">Yes, clearly</label>
-          <label class="radio-pill"><input type="radio" name="outside-field" value="borderline">Borderline</label>
-          <label class="radio-pill"><input type="radio" name="outside-field" value="no">Not really</label>
-          <label class="radio-pill"><input type="radio" name="outside-field" value="missing">None present</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Non-art sources meaningfully enrich the project's ideas</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="outside-field-use" value="strong">Strong contribution</label>
-          <label class="radio-pill"><input type="radio" name="outside-field-use" value="some">Some contribution</label>
-          <label class="radio-pill"><input type="radio" name="outside-field-use" value="forced">Feels forced</label>
-          <label class="radio-pill"><input type="radio" name="outside-field-use" value="superficial">Superficial</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Citation formatting (ASA or Chicago style)</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="citations" value="correct">Looks correct</label>
-          <label class="radio-pill"><input type="radio" name="citations" value="some-issues">Some issues</label>
-          <label class="radio-pill"><input type="radio" name="citations" value="needs-work">Needs significant work</label>
-          <label class="radio-pill"><input type="radio" name="citations" value="wrong-style">Wrong style used</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label" for="q-research-suggest">Suggestions for research and sources</label>
-        <p class="field-hint">What specific changes would most improve the use of sources, citation formatting, or connection to the project's ideas?</p>
-        <textarea id="q-research-suggest" placeholder="What should the author do to strengthen the research and sourcing?"></textarea>
-      </div>
+  <div class="q-block">
+    <div class="q-header">
+      <span class="q-number">3</span>
+      <span class="q-label">Suggestions for how to simulate or prototype the idea</span>
     </div>
+    <p class="q-hint">Based on the concept, which of the following formats might work well — and how specifically could they be applied to this project? Add your own ideas beyond this list too.</p>
+    <ul class="q-hints">
+      <li><strong>Short video or screen recording</strong> — 30–90 sec walking through the user experience. Phone video is fine.</li>
+      <li><strong>Animation or GIF</strong> — Hand-drawn, After Effects, Canva, or any tool. Must show change over time.</li>
+      <li><strong>Coded interactive</strong> — p5.js, HTML/CSS/JS, Processing. Submit link + screenshot.</li>
+      <li><strong>Sound design</strong> — 30–90 sec audio representing the artwork's sonic environment. Paired with a still or animation.</li>
+      <li><strong>Narrated storyboard</strong> — 3+ drawn panels with a recorded voiceover walking through the experience.</li>
+      <li><strong>Physical demo video</strong> — Film yourself interacting with a physical mock-up to show scale, movement, or behavior.</li>
+    </ul>
+    <textarea id="q-simulate" placeholder="Which format(s) seem most fitting for this concept, and how could the author use them?…"></textarea>
   </div>
 
-  <!-- SPECULATIVE ARTWORK -->
-  <div class="card">
-    <div class="card-head"><h2 class="card-title">Speculative artwork</h2></div>
-    <div class="card-body">
-      <div class="q-block">
-        <label class="field-label">Concept and presence</label>
-        <p class="field-hint">Is a speculative artwork proposed? Does it feel like a genuine culmination — not an afterthought?</p>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="spec-present" value="strong">Clearly articulated</label>
-          <label class="radio-pill"><input type="radio" name="spec-present" value="partial">Somewhat present</label>
-          <label class="radio-pill"><input type="radio" name="spec-present" value="weak">Underdeveloped</label>
-          <label class="radio-pill"><input type="radio" name="spec-present" value="missing">Missing</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">All three themes connect directly to the speculative artwork</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="themes-spec" value="all">All three themes</label>
-          <label class="radio-pill"><input type="radio" name="themes-spec" value="two">Two themes</label>
-          <label class="radio-pill"><input type="radio" name="themes-spec" value="one">One theme</label>
-          <label class="radio-pill"><input type="radio" name="themes-spec" value="none">None clearly</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">The speculative artwork feels like a logical extension of the body artworks</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="spec-extension" value="strong">Strong connection</label>
-          <label class="radio-pill"><input type="radio" name="spec-extension" value="some">Some connection</label>
-          <label class="radio-pill"><input type="radio" name="spec-extension" value="weak">Weak connection</label>
-          <label class="radio-pill"><input type="radio" name="spec-extension" value="none">Disconnected</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">The connection to the thesis is explicit</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="spec-thesis" value="explicit">Explicit</label>
-          <label class="radio-pill"><input type="radio" name="spec-thesis" value="implied">Implied</label>
-          <label class="radio-pill"><input type="radio" name="spec-thesis" value="unclear">Unclear</label>
-          <label class="radio-pill"><input type="radio" name="spec-thesis" value="missing">Not addressed</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">The medium or technology is clearly described</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="spec-tech" value="clear">Clearly described</label>
-          <label class="radio-pill"><input type="radio" name="spec-tech" value="partial">Partially described</label>
-          <label class="radio-pill"><input type="radio" name="spec-tech" value="vague">Too vague</label>
-          <label class="radio-pill"><input type="radio" name="spec-tech" value="missing">Not described</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Sketches per group member (3 required per person)</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="sketches" value="yes">Requirement met</label>
-          <label class="radio-pill"><input type="radio" name="sketches" value="partial">Some but not all</label>
-          <label class="radio-pill"><input type="radio" name="sketches" value="no">Missing or insufficient</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Sketches clarify the concept</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="spec-visual" value="strong">Very clearly</label>
-          <label class="radio-pill"><input type="radio" name="spec-visual" value="somewhat">Somewhat</label>
-          <label class="radio-pill"><input type="radio" name="spec-visual" value="weak">Not really</label>
-          <label class="radio-pill"><input type="radio" name="spec-visual" value="missing">No sketches</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">The speculative artwork is sufficiently inventive and speculative</label>
-        <p class="field-hint">Does the concept push beyond the obvious or familiar? Does it feel genuinely speculative — imagining something that doesn't yet exist — or does it feel like a conventional artwork idea?</p>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="spec-inventive" value="very">Very inventive</label>
-          <label class="radio-pill"><input type="radio" name="spec-inventive" value="mostly">Mostly inventive</label>
-          <label class="radio-pill"><input type="radio" name="spec-inventive" value="somewhat">Somewhat inventive</label>
-          <label class="radio-pill"><input type="radio" name="spec-inventive" value="conventional">Feels too conventional</label>
-          <label class="radio-pill"><input type="radio" name="spec-inventive" value="unclear">Hard to tell</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label" for="q-spec-improve">Suggestions for improving the speculative artwork</label>
-        <p class="field-hint">What could make the concept more inventive, more specific, or more fully realized? Be concrete — what should the author actually change or develop?</p>
-        <textarea id="q-spec-improve" placeholder="Suggest specific ways the speculative artwork could be made more ambitious, more detailed, or more clearly connected to the project's ideas."></textarea>
-      </div>
+  <div class="q-block">
+    <div class="q-header">
+      <span class="q-number">4</span>
+      <span class="q-label">Suggestions for making the speculative artwork idea clearer</span>
     </div>
+    <ul class="q-hints">
+      <li>What parts of the concept were confusing or hard to picture?</li>
+      <li>What details are missing that would help a reader fully visualize it?</li>
+      <li>Is the medium, scale, context, or audience clearly defined?</li>
+    </ul>
+    <textarea id="q-clarity" placeholder="What would make the artwork concept easier to understand and visualize?…"></textarea>
   </div>
 
-  <!-- CONCLUSION -->
-  <div class="card">
-    <div class="card-head"><h2 class="card-title">Conclusion</h2></div>
-    <div class="card-body">
-      <div class="q-block">
-        <label class="field-label">A conclusion is present</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="conclusion-present" value="yes">Yes</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-present" value="brief">Very brief</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-present" value="no">Missing</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">The conclusion restates the thesis in a meaningful way</label>
-        <p class="field-hint">Does it return to the thesis without just copying it? Does it reflect what the paper has shown?</p>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="conclusion-thesis" value="strong">Yes, meaningfully</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-thesis" value="partial">Partially</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-thesis" value="copied">Just repeated verbatim</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-thesis" value="missing">Not addressed</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">The conclusion ties together the three themes</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="conclusion-themes" value="all">All three themes</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-themes" value="some">Some themes</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-themes" value="no">Themes not addressed</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">The speculative artwork is referenced in the conclusion</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="conclusion-spec" value="yes">Yes, clearly</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-spec" value="briefly">Briefly</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-spec" value="no">Not mentioned</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">The conclusion offers a sense of broader significance or final thought</label>
-        <p class="field-hint">Does it leave the reader with something to think about — why this project matters beyond itself?</p>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="conclusion-significance" value="strong">Strong closing thought</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-significance" value="some">Some attempt</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-significance" value="abrupt">Ends abruptly</label>
-          <label class="radio-pill"><input type="radio" name="conclusion-significance" value="missing">Missing</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label" for="q-conclusion-suggest">Suggestions for the conclusion</label>
-        <p class="field-hint">What specific changes would most improve how the paper closes?</p>
-        <textarea id="q-conclusion-suggest" placeholder="What should the author do to strengthen the conclusion?"></textarea>
-      </div>
+  <div class="q-block">
+    <div class="q-header">
+      <span class="q-number">5</span>
+      <span class="q-label">Connecting body paragraphs to the speculative artwork</span>
     </div>
+    <ul class="q-hints">
+      <li>Does each body section feel like it's building toward the speculative artwork, or do they feel separate?</li>
+      <li>Which artworks or ideas in the body connect most naturally — and which feel disconnected?</li>
+      <li>What specific bridges or transitions could be added?</li>
+    </ul>
+    <textarea id="q-connect" placeholder="How can the body paragraphs be more explicitly tied to the speculative artwork concept?…"></textarea>
   </div>
 
-  <!-- WRITING QUALITY -->
-  <div class="card">
-    <div class="card-head"><h2 class="card-title">Writing quality</h2></div>
-    <div class="card-body">
-      <div class="q-block">
-        <label class="field-label">Grammar and punctuation</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="grammar" value="clean">Clean throughout</label>
-          <label class="radio-pill"><input type="radio" name="grammar" value="minor">Minor errors</label>
-          <label class="radio-pill"><input type="radio" name="grammar" value="frequent">Frequent errors</label>
-          <label class="radio-pill"><input type="radio" name="grammar" value="pervasive">Pervasive errors</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">All sentences are complete sentences</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="complete-sentences" value="yes">Yes, throughout</label>
-          <label class="radio-pill"><input type="radio" name="complete-sentences" value="mostly">Mostly</label>
-          <label class="radio-pill"><input type="radio" name="complete-sentences" value="some">Some fragments present</label>
-          <label class="radio-pill"><input type="radio" name="complete-sentences" value="frequent">Frequent fragments</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Writing style is appropriate for an academic paper</label>
-        <p class="field-hint">Is the tone formal and analytical rather than casual or conversational?</p>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="writing-style" value="strong">Strong academic voice</label>
-          <label class="radio-pill"><input type="radio" name="writing-style" value="mostly">Mostly academic</label>
-          <label class="radio-pill"><input type="radio" name="writing-style" value="inconsistent">Inconsistent tone</label>
-          <label class="radio-pill"><input type="radio" name="writing-style" value="too-casual">Too casual</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Ideas are expressed clearly and precisely</label>
-        <p class="field-hint">Can you follow what the author means sentence to sentence, or are ideas muddled or hard to follow?</p>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="clarity-prose" value="clear">Clear throughout</label>
-          <label class="radio-pill"><input type="radio" name="clarity-prose" value="mostly">Mostly clear</label>
-          <label class="radio-pill"><input type="radio" name="clarity-prose" value="sometimes">Sometimes hard to follow</label>
-          <label class="radio-pill"><input type="radio" name="clarity-prose" value="often">Often confusing</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Paragraphs are logically organized with clear topic sentences</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="paragraphs" value="yes">Yes, consistently</label>
-          <label class="radio-pill"><input type="radio" name="paragraphs" value="mostly">Mostly</label>
-          <label class="radio-pill"><input type="radio" name="paragraphs" value="some">Some paragraphs wander</label>
-          <label class="radio-pill"><input type="radio" name="paragraphs" value="no">Frequently disorganized</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">Transitions between ideas and sections are smooth</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="transitions" value="smooth">Smooth throughout</label>
-          <label class="radio-pill"><input type="radio" name="transitions" value="mostly">Mostly smooth</label>
-          <label class="radio-pill"><input type="radio" name="transitions" value="abrupt">Sometimes abrupt</label>
-          <label class="radio-pill"><input type="radio" name="transitions" value="missing">Often missing</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label">The paper meets basic length and formatting requirements</label>
-        <div class="radio-row">
-          <label class="radio-pill"><input type="radio" name="logistics" value="yes">Yes</label>
-          <label class="radio-pill"><input type="radio" name="logistics" value="mostly">Mostly</label>
-          <label class="radio-pill"><input type="radio" name="logistics" value="no">Not yet</label>
-        </div>
-      </div>
-      <div class="q-block">
-        <label class="field-label" for="q-writing-suggest">Suggestions for writing quality</label>
-        <p class="field-hint">What specific writing issues most need to be addressed? Point to patterns, not just individual errors.</p>
-        <textarea id="q-writing-suggest" placeholder="What should the author focus on to improve the overall quality of the writing?"></textarea>
-      </div>
+  <div class="q-block">
+    <div class="q-header">
+      <span class="q-number">6</span>
+      <span class="q-label">Suggestions for the introduction</span>
     </div>
+    <ul class="q-hints">
+      <li>Does the opening hook draw you in, or does the paper start too broadly or generically?</li>
+      <li>Is enough background context given to understand the project's focus and stakes?</li>
+      <li>Is the thesis clear, specific, and present early — or vague and buried?</li>
+      <li>Does the introduction set up all three themes and introduce the speculative artwork concept?</li>
+    </ul>
+    <textarea id="q-intro" placeholder="What specific changes would most strengthen the introduction?…"></textarea>
   </div>
 
-  <!-- RATINGS -->
-  <div class="card">
-    <div class="card-head"><h2 class="card-title">Ratings</h2><span class="part-tag">1 = needs work &middot; 5 = strong</span></div>
-    <div class="card-body" style="padding:1rem 1.25rem">
-      <div class="ratings-table">
-        <div class="rating-row"><span class="rating-label">Clarity and strength of thesis</span><div class="stars" id="r-thesis" data-val="0"></div></div>
-        <div class="rating-row"><span class="rating-label">Clarity of ideas and structure</span><div class="stars" id="r-argument" data-val="0"></div></div>
-        <div class="rating-row"><span class="rating-label">Artwork analysis and connections</span><div class="stars" id="r-artworks" data-val="0"></div></div>
-        <div class="rating-row"><span class="rating-label">Use of research and evidence</span><div class="stars" id="r-research" data-val="0"></div></div>
-        <div class="rating-row"><span class="rating-label">Speculative artwork concept</span><div class="stars" id="r-spec" data-val="0"></div></div>
-        <div class="rating-row"><span class="rating-label">Overall project quality</span><div class="stars" id="r-overall" data-val="0"></div></div>
-      </div>
+  <div class="q-block">
+    <div class="q-header">
+      <span class="q-number">7</span>
+      <span class="q-label">Suggestions for the conclusion</span>
     </div>
+    <ul class="q-hints">
+      <li>Does the conclusion return to the thesis in a meaningful way, or just repeat it?</li>
+      <li>Does it tie together the three themes and reference the speculative artwork?</li>
+      <li>Does it leave the reader with a sense of why this project matters beyond itself?</li>
+      <li>Does it end abruptly, or does it close with a strong final thought?</li>
+    </ul>
+    <textarea id="q-conclusion" placeholder="What specific changes would most strengthen the conclusion?…"></textarea>
   </div>
 
-  <!-- OVERALL FEEDBACK -->
-  <div class="card">
-    <div class="card-head"><h2 class="card-title">Overall feedback</h2></div>
-    <div class="card-body">
-      <div class="q-block">
-        <label class="field-label" for="q-strengths">Two things that are working well</label>
-        <p class="field-hint">Be specific — name the section, technique, or moment that stands out.</p>
-        <textarea id="q-strengths" placeholder="1.&#10;2." style="min-height:90px"></textarea>
-      </div>
-      <div class="q-block">
-        <label class="field-label" for="q-improve">Two specific suggestions for improvement</label>
-        <p class="field-hint">Be constructive and actionable — what should the author actually do, not just what is wrong.</p>
-        <textarea id="q-improve" placeholder="1.&#10;2." style="min-height:90px"></textarea>
-      </div>
-      <div class="q-block">
-        <label class="field-label" for="q-most-important">The single most important revision</label>
-        <p class="field-hint">If the author could only fix one thing before the final submission, what would have the biggest impact?</p>
-        <textarea id="q-most-important" placeholder="Identify the highest-priority revision and why it matters most."></textarea>
-      </div>
-      <div class="q-block">
-        <label class="field-label" for="q-questions">Questions for the author</label>
-        <p class="field-hint">What was unclear enough that you'd want them to address it?</p>
-        <textarea id="q-questions" placeholder="Optional — but useful for the author to know what puzzled or intrigued you."></textarea>
-      </div>
+  <div class="q-block">
+    <div class="q-header">
+      <span class="q-number">8</span>
+      <span class="q-label">Grammar, spelling, and logistical improvements</span>
     </div>
+    <ul class="q-hints">
+      <li>Note any patterns in grammar or punctuation errors — don't just list individual mistakes.</li>
+      <li>Are there sentence fragments, run-ons, or unclear phrasing?</li>
+      <li>Comment on formatting, citation style, or logistical requirements (length, structure, headings).</li>
+    </ul>
+    <textarea id="q-grammar" placeholder="Note patterns in grammar, spelling, or formatting that need attention…"></textarea>
+  </div>
+
+  <div class="q-block">
+    <div class="q-header">
+      <span class="q-number">9</span>
+      <span class="q-label">Overall suggestions — go deeper, push further</span>
+    </div>
+    <ul class="q-hints">
+      <li>What ideas are worth expanding significantly?</li>
+      <li>Where does the project feel thin or rushed?</li>
+      <li>What single area would have the biggest impact if developed more fully before the final submission?</li>
+    </ul>
+    <textarea id="q-overall" placeholder="What should the author improve, expand, or push much further overall?…" style="min-height:120px"></textarea>
   </div>
 
   <div class="actions">
     <button class="btn btn-export" id="export-btn" onclick="exportPDF()">
-      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 1v9M4.5 7l3 3 3-3M2.5 13h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 1v8M4 6.5l2.5 2.5 2.5-2.5M1.5 11.5h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Export PDF
     </button>
     <button class="btn btn-ghost" onclick="clearForm()">Clear form</button>
-    <p id="print-hint" style="display:none">Printing… choose <strong>Save as PDF</strong> as the destination, then click Save.</p>
+    <p id="print-hint">Printing… choose <strong>Save as PDF</strong>, then click Save.</p>
   </div>
+
 </main>
 
 <script>
-var STORE = 'peer-review-3-v1';
-var RADIO_GROUPS = [
-  'hook','background','thesis-clarity','intro-themes','intro-spec',
-  'section-focus','section-order','theme-cohesion',
-  'artwork-count','artwork-detail','artwork-analysis','artwork-connect','artwork-spec-link','artwork-selection',
-  'sources-req','peer-reviewed','sources-use','sources-spec','outside-field','outside-field-use','citations',
-  'spec-present','themes-spec','spec-extension','spec-thesis','spec-tech','sketches','spec-visual','spec-inventive',
-  'conclusion-present','conclusion-thesis','conclusion-themes','conclusion-spec','conclusion-significance',
-  'grammar','complete-sentences','writing-style','clarity-prose','paragraphs','transitions','logistics'
-];
-var RATING_IDS = ['r-thesis','r-argument','r-artworks','r-research','r-spec','r-overall'];
-var SCALE_IDS = ['sc-argument'];
-
-function buildStars() {
-  RATING_IDS.forEach(function(id) {
-    var c = document.getElementById(id); if (!c) return; c.innerHTML = '';
-    for (var i = 1; i <= 5; i++) { (function(n) {
-      var b = document.createElement('button'); b.className = 'star'; b.textContent = '★';
-      b.setAttribute('aria-label', n + ' star');
-      b.addEventListener('click', function() {
-        c.setAttribute('data-val', n);
-        c.querySelectorAll('.star').forEach(function(s, idx) { s.classList.toggle('active', idx < n); });
-        save(); updateProgress();
-      }); c.appendChild(b);
-    })(i); }
-  });
-}
-
-function buildScales() {
-  SCALE_IDS.forEach(function(id) {
-    var c = document.getElementById(id); if (!c) return;
-    c.querySelectorAll('.scale-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var v = +btn.getAttribute('data-v');
-        c.setAttribute('data-val', v);
-        c.querySelectorAll('.scale-btn').forEach(function(b) { b.classList.toggle('active', +b.getAttribute('data-v') === v); });
-        save(); updateProgress();
-      });
-    });
-  });
-}
+var STORE = 'peer-feedback-spec-v1';
+var TEXT_IDS = ['reviewer-name','author-name','paper-title','q-working','q-spec','q-spec-themes','q-simulate','q-clarity','q-connect','q-intro','q-conclusion','q-grammar','q-overall'];
+var TOTAL = TEXT_IDS.length;
 
 function autoGrow(el) { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; }
-function allTextFields() { return Array.from(document.querySelectorAll('input[type="text"],textarea')); }
-function totalCount() { return allTextFields().length + RADIO_GROUPS.length + RATING_IDS.length + SCALE_IDS.length; }
+
 function filledCount() {
-  var n = 0;
-  allTextFields().forEach(function(el) { if (el.value.trim()) n++; });
-  RADIO_GROUPS.forEach(function(name) { if (document.querySelector('input[name="' + name + '"]:checked')) n++; });
-  RATING_IDS.forEach(function(id) { var c = document.getElementById(id); if (c && +c.getAttribute('data-val') > 0) n++; });
-  SCALE_IDS.forEach(function(id) { var c = document.getElementById(id); if (c && +c.getAttribute('data-val') > 0) n++; });
-  return n;
+  return TEXT_IDS.filter(function(id) {
+    var el = document.getElementById(id);
+    return el && el.value.trim().length > 0;
+  }).length;
 }
+
 function updateProgress() {
-  var pct = Math.round(filledCount() / totalCount() * 100);
+  var n = filledCount();
+  var pct = Math.round(n / TOTAL * 100);
   document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-label').textContent = pct + '% complete';
+  document.getElementById('progress-label').textContent = n + ' of ' + TOTAL + ' answered';
 }
 
 var saveTimer;
 function save() {
   var d = {};
-  allTextFields().forEach(function(el) { if (el.id) d[el.id] = el.value; });
-  RADIO_GROUPS.forEach(function(name) { var el = document.querySelector('input[name="' + name + '"]:checked'); if (el) d['radio-' + name] = el.value; });
-  RATING_IDS.forEach(function(id) { var c = document.getElementById(id); if (c) d['star-' + id] = c.getAttribute('data-val'); });
-  SCALE_IDS.forEach(function(id) { var c = document.getElementById(id); if (c) d['scale-' + id] = c.getAttribute('data-val') || '0'; });
+  TEXT_IDS.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) d[id] = el.value;
+  });
   try { localStorage.setItem(STORE, JSON.stringify(d)); } catch(e) {}
   var dot = document.getElementById('save-dot');
-  document.getElementById('save-label').textContent = 'Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  dot.classList.add('on'); setTimeout(function() { dot.classList.remove('on'); }, 1500);
+  document.getElementById('save-label').textContent = 'Saved ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  dot.classList.add('on');
+  setTimeout(function() { dot.classList.remove('on'); }, 1500);
 }
 
 function load() {
@@ -811,67 +457,67 @@ function load() {
   if (!raw) return;
   try {
     var d = JSON.parse(raw);
-    Object.keys(d).forEach(function(k) {
-      var v = d[k];
-      if (k.indexOf('radio-') === 0) {
-        var el = document.querySelector('input[name="' + k.slice(6) + '"][value="' + v + '"]');
-        if (el) el.checked = true;
-      } else if (k.indexOf('star-') === 0) {
-        var c = document.getElementById(k.slice(5));
-        if (c) { c.setAttribute('data-val', v); c.querySelectorAll('.star').forEach(function(s, idx) { s.classList.toggle('active', idx < +v); }); }
-      } else if (k.indexOf('scale-') === 0) {
-        var sc = document.getElementById(k.slice(6));
-        if (sc) { sc.setAttribute('data-val', v); sc.querySelectorAll('.scale-btn').forEach(function(b) { b.classList.toggle('active', +b.getAttribute('data-v') === +v); }); }
-      } else {
-        var field = document.getElementById(k);
-        if (field) { field.value = v; autoGrow(field); }
-      }
+    TEXT_IDS.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && d[id] !== undefined) { el.value = d[id]; autoGrow(el); }
     });
   } catch(e) {}
 }
 
-document.querySelectorAll('textarea').forEach(function(ta) { ta.addEventListener('input', function() { autoGrow(ta); }); });
-allTextFields().forEach(function(el) { el.addEventListener('input', function() { clearTimeout(saveTimer); saveTimer = setTimeout(function() { save(); updateProgress(); }, 600); }); });
-document.querySelectorAll('input[type="radio"]').forEach(function(el) { el.addEventListener('change', function() { save(); updateProgress(); }); });
+TEXT_IDS.forEach(function(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('input', function() {
+    autoGrow(el);
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function() { save(); updateProgress(); }, 500);
+  });
+});
 
 function prepareForPrint() {
   document.querySelectorAll('textarea').forEach(function(ta) {
-    var div = document.createElement('div'); div.className = 'print-proxy';
-    div.textContent = ta.value || ''; ta.parentNode.insertBefore(div, ta); ta.style.display = 'none';
+    var div = document.createElement('div');
+    div.className = 'print-proxy';
+    div.textContent = ta.value || '';
+    ta.parentNode.insertBefore(div, ta);
+    ta.style.display = 'none';
   });
   document.querySelectorAll('input[type="text"]').forEach(function(inp) {
-    var div = document.createElement('div'); div.className = 'print-proxy print-proxy--inline';
-    div.textContent = inp.value || ''; inp.parentNode.insertBefore(div, inp); inp.style.display = 'none';
+    inp._printVal = inp.value;
   });
 }
 function restoreAfterPrint() {
   document.querySelectorAll('.print-proxy').forEach(function(div) { div.parentNode.removeChild(div); });
-  document.querySelectorAll('textarea,input[type="text"]').forEach(function(el) { el.style.display = ''; });
+  document.querySelectorAll('textarea, input[type="text"]').forEach(function(el) { el.style.display = ''; });
 }
 window.addEventListener('beforeprint', prepareForPrint);
 window.addEventListener('afterprint', restoreAfterPrint);
 
 function exportPDF() {
-  var hint = document.getElementById('print-hint'); hint.style.display = 'block';
+  var hint = document.getElementById('print-hint');
+  hint.style.display = 'block';
   document.getElementById('export-btn').disabled = true;
   setTimeout(function() {
     window.print();
-    setTimeout(function() { hint.style.display = 'none'; document.getElementById('export-btn').disabled = false; }, 2000);
+    setTimeout(function() {
+      hint.style.display = 'none';
+      document.getElementById('export-btn').disabled = false;
+    }, 2000);
   }, 150);
 }
 
 function clearForm() {
   if (!confirm('Clear all responses? This cannot be undone.')) return;
   try { localStorage.removeItem(STORE); } catch(e) {}
-  allTextFields().forEach(function(el) { el.value = ''; el.style.height = ''; });
-  document.querySelectorAll('input[type="radio"]').forEach(function(el) { el.checked = false; });
-  RATING_IDS.forEach(function(id) { var c = document.getElementById(id); if (!c) return; c.setAttribute('data-val', '0'); c.querySelectorAll('.star').forEach(function(s) { s.classList.remove('active'); }); });
-  SCALE_IDS.forEach(function(id) { var c = document.getElementById(id); if (!c) return; c.setAttribute('data-val', '0'); c.querySelectorAll('.scale-btn').forEach(function(b) { b.classList.remove('active'); }); });
+  TEXT_IDS.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) { el.value = ''; el.style.height = ''; }
+  });
   document.getElementById('save-label').textContent = '';
   updateProgress();
 }
 
-buildStars(); buildScales(); load();
+load();
 document.querySelectorAll('textarea').forEach(function(ta) { autoGrow(ta); });
 updateProgress();
 </script>
